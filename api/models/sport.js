@@ -1,26 +1,15 @@
 const mongoose = require('mongoose');
 
-const dataSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  value: {
-    type: String,
-    required: true
-  }
-});
-
-const itemSchema = mongoose.Schema({
+const sportSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  date: Date,
-  type: String,
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  category: String,
   duration: Number,
   duration_suffix: String,
-  dataSets: [dataSchema]
+  datasets: [{name: String, value: String}]
 })
 
-module.exports = {
-  Item: mongoose.model('Sport', itemSchema),
-  Data: mongoose.model('SportData', dataSchema)
-};
+module.exports = mongoose.model('Sport', sportSchema);
