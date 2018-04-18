@@ -5,9 +5,17 @@ const mongoose = require('mongoose');
 const Sport = require('../models/sport');
 
 router.get('/', (req, res, next) => {
-  res.status(200).json({
-    mesage: 'sports'
-  });
+  Sport.find()
+    .select('_id date category duration duration_suffix datasets')
+    .exec()
+    .then(docs => {
+      res.status(200).json(docs);
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 router.post('/', (req, res, next) => {
@@ -19,8 +27,7 @@ router.post('/', (req, res, next) => {
     datasets: req.body.datasets
   });
 
-  sport
-    .save()
+  sport.save()
     .then(result => {
       res.status(201).json({
         message: 'Create sport successfully'
