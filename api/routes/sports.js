@@ -6,7 +6,7 @@ const Sport = require('../models/sport');
 
 router.get('/', (req, res, next) => {
   Sport.find()
-    .select('_id date category duration duration_suffix datasets')
+    .select('-__v')
     .exec()
     .then(docs => {
       res.status(200).json(docs);
