@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const sport = new Sport({
     _id: new mongoose.Types.ObjectId(),
+    date: req.body.date,
     category: req.body.category,
     duration: req.body.duration,
     duration_suffix: req.body.duration_suffix,
