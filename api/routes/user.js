@@ -35,9 +35,11 @@ router.post('/authorization', function (req, res, next) {
         })
       })
     } else {
-      res.status(500).json(err);
+      res.status(500).json({
+        message: '登录失败！'
+      })
     }
   })
 })
 
-module.exports = router;
+module.exports = router

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const moment = require('moment')
 
-moment.locale('zh-cn');
+moment.locale('zh-cn')
 
 const sportSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
