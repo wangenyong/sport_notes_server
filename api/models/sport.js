@@ -1,10 +1,14 @@
-const mongoose = require('mongoose');
-const moment = require('moment');
+const mongoose = require('mongoose')
+const moment = require('moment')
 
 moment.locale('zh-cn');
 
 const sportSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  openid: {
+    type: String,
+    require: true
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -23,4 +27,4 @@ const sportSchema = mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Sport', sportSchema);
+module.exports = mongoose.model('Sport', sportSchema)
