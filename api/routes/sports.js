@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
   const sessionId = req.headers['sessionid']
   if (sessionId && sessionId.length > 0) {
     redisStore.get(sessionId, (err, data) => {
-      if (err) {
+      if (err || !data) {
         res.status(500).json({
           message: '用户验证失败！'
         })
@@ -41,7 +41,7 @@ router.post('/', (req, res, next) => {
   console.log(sessionId)
   if (sessionId && sessionId.length > 0) {
     redisStore.get(sessionId, (err, data) => {
-      if (err) {
+      if (err || !data) {
         res.status(500).json({
           message: '用户验证失败！'
         })
