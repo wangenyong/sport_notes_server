@@ -29,7 +29,7 @@ router.post('/authorization', function (req, res, next) {
       crypto.randomBytes(16, function (err, buffer) {
         const token = buffer.toString('hex')
         // 将{token:JSON.stringify(secretValue)} 存入内存中，过期时间设置为微信小程序接口返回给我们的有效时间
-        redisStore.set(token, JSON.stringify(secretValue), 'EX', data.expires_in)
+        redisStore.set(token, JSON.stringify(secretValue))
         res.status(200).json({
           wxtoken: token
         })
